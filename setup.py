@@ -11,7 +11,7 @@ PKG_NAME = "jimi"
 VERSION = "0.1.0"
 PKG_DESCRIPTION = "Midi-powered musician"
 AUTHOR = "Madeline Wolf"
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = ["mido==1.2.9", "python-rtmidi==1.3.0"]
 
 if __name__ == "__main__":
     setup(
