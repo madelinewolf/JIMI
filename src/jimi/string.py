@@ -18,9 +18,11 @@ class String:
     def play(self, fret: int):
         """Play note at given fret"""
         self.is_available = False
+        print("string ", self.order, ", fret ", fret)
         pass
 
     def release(self, fret):
         """Release fret"""
         self.is_available = True
+        print("string ", self.order, ", fret ", fret)
         pass

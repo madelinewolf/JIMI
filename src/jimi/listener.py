@@ -21,13 +21,26 @@ class Listener:
                 signal = msg.type
                 pitch = msg.note
                 print(signal, " ", pitch)
-                if signal == "note_on":
-                    string = instrument.select_string(pitch, play=True)
-                    fret = string.notes.index(pitch)
-                    string.play(fret)
-                if signal == "note_off":
-                    string = instrument.select_string(pitch, play=False)
-                    string.release(fret)
+                if pitch in instrument.range:
+                    if signal == "note_on":
+                        string = instrument.select_string(pitch, play=True)
+                        print(string)
+                        fret = string.notes.index(pitch)
+                        print(fret)
+                        string.play(fret)
+                    if signal == "note_off":
+                        string = instrument.select_string(pitch, play=False)
+                        print(string)
+                        fret = string.notes.index(pitch)
+                        print(fret)
+                        string.release(fret)
+                else:
+                    print(
+                        f"Pitch out of range.  Instrument range is {instrument.lowest_note} to {instrument.highest_note}"
+                    )
 
         except KeyboardInterrupt:
+            self.port.close()
+
+        finally:
             self.port.close()
